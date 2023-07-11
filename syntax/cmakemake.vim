@@ -31,8 +31,14 @@ syn match cmmPercentageLine '\v^\[\s*\d+\%\]\s.*$'
 syn match cmmTimestampLine '\v^[0-9-]+ [0-9:].+$'
     \ keepend oneline
 
-" docker lines
-syn match cmmDockerLine '\v^\s*docker>.+$'
+" lines for commands we are running
+syn match cmmCommandLine '\v^\s*docker>.+$'
+    \ keepend oneline
+syn match cmmCommandLine '\v^\+ .*$'
+    \ keepend oneline
+
+" header lines
+syn match cmmHeaderLine '\v^\@\@.*$'
     \ keepend oneline
 
 " Failed commands from ninja:
@@ -46,7 +52,8 @@ hi def link     cmmFlag         WarningMsg
 hi def link     cmmDriverMessage  PreProc
 hi def link     cmmPercentageLine  Comment
 hi def link     cmmTimestampLine  Function
-hi def link     cmmDockerLine  Special
+hi def link     cmmCommandLine  Special
+hi def cmmHeaderLine cterm=bold ctermfg=lightblue gui=bold guifg=cornflowerblue
 
 hi def cmmFailureMessage ctermfg=red guifg=red
 hi def cmmFailedCommand ctermfg=yellow guifg=yellow
